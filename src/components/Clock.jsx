@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { eventEmitter } from '../utils/eventEmitter';
+import { FiCrosshair, FiCoffee } from 'react-icons/fi';
 
 function Clock({ time }) {
     const [dTime, setDTime] = useState(null);
@@ -25,19 +26,21 @@ function Clock({ time }) {
             <div className='z-50 noto-sans-mono font-light text-5xl text-white'>
                 {dTime}
             </div>
-            <div
-                className={`absolute z-50 ${
-                    isWork ? 'text-white' : 'text-purple-400'
-                } text-2xl font-extralight top-10`}
-            >
-                Work
-            </div>
-            <div
-                className={`absolute z-50 ${
-                    !isWork ? 'text-white' : 'text-purple-400'
-                } text-2xl font-extralight bottom-10`}
-            >
-                Break
+            <div className={`absolute flex gap-4 z-50 text-2xl bottom-10`}>
+                <FiCrosshair
+                    className={`${
+                        isWork
+                            ? 'text-white'
+                            : 'text-purple-400 font-extralight'
+                    }`}
+                />
+                <FiCoffee
+                    className={`${
+                        !isWork
+                            ? 'text-white'
+                            : 'text-purple-400 font-extralight'
+                    }`}
+                />
             </div>
             <div className='absolute z-40 p-1.5 w-full h-full'>
                 <div className='w-full h-full rounded-full bg-purple-800' />
