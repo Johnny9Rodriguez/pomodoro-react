@@ -3,7 +3,7 @@ import Layout from './Layout';
 
 function App() {
     return (
-        <div className='h-screen overflow-hidden select-none'>
+        <div className='flex justify-center h-screen overflow-hidden select-none bg-slate-200'>
             <Layout />
         </div>
     );
