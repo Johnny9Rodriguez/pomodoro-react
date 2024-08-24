@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import useAudioClip from '../hooks/useAudioClip';
+import { eventEmitter } from '../utils/eventEmitter';
 
 function TimerButtons({ handleClick }) {
     const [name, setName] = useState('Start');
 
     const { playAudio } = useAudioClip();
+
+    eventEmitter.addListener('timer-end', () => setName('Start'));
 
     const onClick = () => {
         const res = handleClick();
