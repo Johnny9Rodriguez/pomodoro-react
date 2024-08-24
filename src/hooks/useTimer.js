@@ -4,7 +4,7 @@ import { eventEmitter } from '../utils/eventEmitter';
 
 function useTimer() {
     const [timer, setTimer] = useState(null);
-    const [time, setTime] = useState(5);
+    const [time, setTime] = useState(25 * 60);
     const [count, setCount] = useState(null);
 
     const { playAudio } = useAudioClip();
@@ -30,13 +30,13 @@ function useTimer() {
 
         let isWork;
         if (count === 7) {
-            setTime(5);
+            setTime(25 * 60);
             isWork = false;
         } else if (count % 2 === 0) {
-            setTime(5);
+            setTime(25 * 60);
             isWork = true;
         } else {
-            setTime(2);
+            setTime(5 * 60);
             isWork = false;
         }
         eventEmitter.emit('set-clock-label', isWork);
