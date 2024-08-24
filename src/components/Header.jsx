@@ -5,7 +5,7 @@ import { FiX, FiMinus } from 'react-icons/fi';
 function Header() {
     return (
         <div className='flex justify-between w-full'>
-            <img src='/images/icon.png' alt='icon' className='w-8 h-8 drop-shadow-md' />
+            <img src='./images/icon.png' alt='icon' className='w-8 h-8 drop-shadow-md' />
             <div className=' flex items-center gap-2'>
                 <FiMinus className='text-xl' />
                 <FiX className='text-xl' />
