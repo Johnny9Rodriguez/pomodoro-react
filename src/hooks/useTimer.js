@@ -4,8 +4,8 @@ import { eventEmitter } from '../utils/eventEmitter';
 
 function useTimer() {
     const [timer, setTimer] = useState(null);
-    const [time, setTime] = useState(3);
-    const [count, setCount] = useState(0);
+    const [time, setTime] = useState(25 * 60);
+    const [count, setCount] = useState(null);
 
     const { playAudio } = useAudioClip();
 
@@ -26,10 +26,12 @@ function useTimer() {
     }, [timer, time, playAudio, count]);
 
     useEffect(() => {
+        if (!count) return;
+
         if (count === 7) {
-            setTime(3);
+            setTime(25 * 60);
         } else {
-            setTime(count % 2 === 0 ? 2 : 1);
+            setTime(count % 2 === 0 ? 25 * 60 : 5 * 60);
         }
     }, [count]);
 
