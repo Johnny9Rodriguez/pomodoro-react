@@ -3,12 +3,26 @@ import { FiX, FiMinus } from 'react-icons/fi';
 // import { FiMenu, FiRotateCcw, FiSettings } from 'react-icons/fi';
 
 function Header() {
+    const handleClose = () => {
+        window.pomodoro.quitApp();
+    };
+
     return (
-        <div className='flex justify-between w-full'>
-            <img src='./images/icon.png' alt='icon' className='w-8 h-8 drop-shadow-md' />
-            <div className=' flex items-center gap-2'>
+        <div className='flex justify-between w-full draggable'>
+            <img
+                src='./images/icon.png'
+                alt='icon'
+                className='w-8 h-8 drop-shadow-md'
+            />
+            <div className=' flex items-center gap-2 not-draggable'>
                 <FiMinus className='text-xl' />
-                <FiX className='text-xl' />
+                <FiX
+                    className='text-xl hover:cursor-pointer hover:text-purple-600'
+                    onClick={handleClose}
+                    style={{
+                        transition: 'color 0.17s ease-in-out',
+                    }}
+                />
             </div>
         </div>
     );

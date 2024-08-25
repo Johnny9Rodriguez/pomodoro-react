@@ -14,3 +14,11 @@
 .noto-sans-mono {
   font-family: "Noto Sans Mono", monospace;
 }
+
+.draggable {
+  -webkit-app-region: drag;
+}
+
+.not-draggable {
+  -webkit-app-region: no-drag;
+}
