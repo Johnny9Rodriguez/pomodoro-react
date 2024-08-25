@@ -1,9 +1,13 @@
 import React from 'react';
 import { FiRotateCcw, FiSettings } from 'react-icons/fi';
 
-function Options() {
+function Options({ reset }) {
     const style = {
         transition: 'color 0.17s ease-in-out',
+    };
+
+    const handleReset = async () => {
+        await window.pomodoro.resetTimer();
     };
 
     return (
@@ -15,6 +19,7 @@ function Options() {
             <FiRotateCcw
                 className='hover:cursor-pointer text-purple-800 hover:text-purple-600'
                 style={style}
+                onClick={handleReset}
             />
         </div>
     );
