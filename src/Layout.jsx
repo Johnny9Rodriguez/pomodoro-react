@@ -4,7 +4,7 @@ import Timer from './components/Timer';
 
 function Layout() {
     return (
-        <div className='flex flex-col items-center gap-4 p-4 h-full w-min'>
+        <div className='flex flex-col items-center h-min w-min p-2 pt-1 border border-black'>
             <Header />
             <Timer />
         </div>

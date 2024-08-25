@@ -1,31 +1,15 @@
-import React, { useState } from 'react';
-import useAudioClip from '../hooks/useAudioClip';
-import { eventEmitter } from '../utils/eventEmitter';
+import React from 'react';
 
-function TimerButtons({ handleClick }) {
-    const [name, setName] = useState('Start');
-
-    const { playAudio } = useAudioClip();
-
-    eventEmitter.addListener('timer-end', () => setName('Start'));
-
-    const onClick = () => {
-        const res = handleClick();
-        if (res) {
-            setName('Pause');
-            playAudio('start');
-        } else {
-            setName('Start');
-            playAudio('pause');
-        }
-    };
-
+function TimerButtons() {
     return (
         <button
-            className='noto-sans-mono w-full rounded-full py-1.5 text-white font-bold drop-shadow-sm bg-purple-600 hover:bg-purple-800'
-            onClick={onClick}
+            className='noto-sans-mono w-full rounded-full py-1.5 text-white font-bold drop-shadow-sm bg-purple-800 hover:bg-purple-600'
+            style={{
+                transition: 'background-color 0.17s ease-in-out',
+            }}
+            tabIndex={-1}
         >
-            {name}
+            Start
         </button>
     );
 }
