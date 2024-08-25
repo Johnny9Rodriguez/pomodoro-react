@@ -7,6 +7,10 @@ function Header() {
         window.pomodoro.quitApp();
     };
 
+    const handleMinimize = () => {
+        window.pomodoro.minimizeApp();
+    };
+
     return (
         <div className='flex justify-between w-full draggable'>
             <img
@@ -15,7 +19,13 @@ function Header() {
                 className='w-8 h-8 drop-shadow-md'
             />
             <div className=' flex items-center gap-2 not-draggable'>
-                <FiMinus className='text-xl' />
+                <FiMinus
+                    className='text-xl hover:cursor-pointer hover:text-purple-600'
+                    onClick={handleMinimize}
+                    style={{
+                        transition: 'color 0.17s ease-in-out',
+                    }}
+                />
                 <FiX
                     className='text-xl hover:cursor-pointer hover:text-purple-600'
                     onClick={handleClose}
