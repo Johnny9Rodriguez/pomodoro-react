@@ -4,6 +4,7 @@ import Options from './Options';
 
 function Clock() {
     const [time, setTime] = useState(null);
+    const [displayTime, setDisplayTime] = useState(null);
     const [isWork, setIsWork] = useState(true);
 
     useEffect(() => {
@@ -16,10 +17,24 @@ function Clock() {
         window.pomodoro.onUpdateTimer((count) => setIsWork(count % 2 === 0));
     }, []);
 
+    useEffect(() => {
+        const renderDisplayTime = () => {
+            const min = Math.floor(time / 60);
+            const sec = time % 60;
+
+            const dMin = min < 10 ? '0' + min : min;
+            const dSec = sec < 10 ? '0' + sec : sec;
+
+            setDisplayTime(`${dMin}:${dSec}`);
+        };
+
+        renderDisplayTime();
+    }, [time]);
+
     return (
         <div className='relative flex justify-center items-center w-52 h-52 drop-shadow-sm'>
             <div className='z-50 noto-sans-mono font-light text-5xl text-white'>
-                {time}
+                {displayTime}
             </div>
             <div className={`absolute flex gap-4 z-50 text-2xl bottom-10`}>
                 <FiCrosshair

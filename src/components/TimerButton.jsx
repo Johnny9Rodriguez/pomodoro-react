@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { FaPause } from 'react-icons/fa6';
 
 function TimerButtons() {
     const [isPaused, setIsPaused] = useState(true);
@@ -24,14 +25,14 @@ function TimerButtons() {
 
     return (
         <button
-            className='noto-sans-mono w-full rounded-full py-1.5 text-white font-bold drop-shadow-sm bg-purple-800 hover:bg-purple-600'
+            className='noto-sans-mono flex justify-center items-center w-full h-9 rounded-full py-1.5 text-white font-bold drop-shadow-sm bg-purple-800 hover:bg-purple-600'
             style={{
                 transition: 'background-color 0.17s ease-in-out',
             }}
             onClick={handleClick}
             tabIndex={-1}
         >
-            {isPaused ? label : 'Pause'}
+            {isPaused ? label : <FaPause className='text-xl' />}
         </button>
     );
 }
