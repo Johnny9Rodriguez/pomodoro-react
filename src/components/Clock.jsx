@@ -1,22 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiCrosshair, FiCoffee } from 'react-icons/fi';
 import Options from './Options';
 
 function Clock() {
+    const [time, setTime] = useState(null);
+    const [isWork, setIsWork] = useState(true);
+
+    useEffect(() => {
+        const getInitTime = async () => {
+            const initTime = await window.pomodoro.getTime();
+            setTime(initTime);
+        };
+        getInitTime();
+        window.pomodoro.onUpdateTime((time) => setTime(time));
+        window.pomodoro.onUpdateTimer((count) => setIsWork(count % 2 === 0));
+    }, []);
+
     return (
         <div className='relative flex justify-center items-center w-52 h-52 drop-shadow-sm'>
             <div className='z-50 noto-sans-mono font-light text-5xl text-white'>
-                25:00
+                {time}
             </div>
             <div className={`absolute flex gap-4 z-50 text-2xl bottom-10`}>
                 <FiCrosshair
                     className={`${
-                        true ? 'text-white' : 'text-purple-400 font-extralight'
+                        isWork
+                            ? 'text-white'
+                            : 'text-purple-400 font-extralight'
                     }`}
                 />
                 <FiCoffee
                     className={`${
-                        !true ? 'text-white' : 'text-purple-400 font-extralight'
+                        !isWork
+                            ? 'text-white'
+                            : 'text-purple-400 font-extralight'
                     }`}
                 />
             </div>
