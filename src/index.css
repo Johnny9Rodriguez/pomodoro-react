@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
   margin: 0;
@@ -15,10 +16,31 @@
   font-family: "Noto Sans Mono", monospace;
 }
 
+.noto-sans {
+  font-family: "Noto Sans", sans-serif;
+}
+
 .draggable {
   -webkit-app-region: drag;
 }
 
 .not-draggable {
   -webkit-app-region: no-drag;
+}
+
+.time-input input[type=number] {
+  outline: none;
+  font-family: "Noto Sans Mono", monospace;
+  font-size: 0.9rem;
+  padding: 2px 4px;
+  width: 48px;
+}
+
+.time-input input[type=number]::selection {
+  background: #9333ea;
+  color: white; /* Ensure the text color is readable */
+}
+
+input[type=number]::-webkit-inner-spin-button {
+  opacity: 1
 }

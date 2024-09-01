@@ -3,7 +3,7 @@ import Options from './Options';
 import UnitType from './UnitType';
 import UnitCount from './UnitCount';
 
-function Clock() {
+function Clock({ setOpen }) {
     const [time, setTime] = useState(null);
     const [displayTime, setDisplayTime] = useState(null);
     const [isWork, setIsWork] = useState(true);
@@ -25,7 +25,7 @@ function Clock() {
             setIsWork(newCount % 2 === 0);
             setTime(newTime);
             setCount(newCount);
-            console.log(newCount)
+            console.log(newCount);
             timeRef.current = newTime;
         });
     }, []);
@@ -65,7 +65,7 @@ function Clock() {
                 }}
             />
             <div className='absolute z-20 w-full h-full rounded-full bg-purple-200' />
-            <Options />
+            <Options setOpen={setOpen} />
         </div>
     );
 }
