@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 import { FiSave } from 'react-icons/fi';
 import { useSettingsStore } from '../stores/settingsStore';
 
 function Settings() {
     const { isOpen, closeSettings } = useSettingsStore();
+    const [userConfig, setUserConfig] = useState({});
+
+    useEffect(() => {
+        const fetchUserConfig = async () => {
+            const res = await window.pomodoro.getUserConfig();
+            setUserConfig(res);
+        };
+
+        fetchUserConfig();
+    }, []);
 
     return (
         <div
