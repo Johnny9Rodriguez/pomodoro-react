@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 import { FiSave } from 'react-icons/fi';
+import { CgSpinner } from 'react-icons/cg';
 import { useSettingsStore } from '../stores/settingsStore';
 import SettingsInput from './SettingsInput';
 
@@ -8,6 +9,7 @@ function Settings() {
     const { isOpen, closeSettings } = useSettingsStore();
     const [userConfig, setUserConfig] = useState({});
     const [backupConfig, setBackupConfig] = useState({});
+    const [isSaving, setIsSaving] = useState(false);
 
     useEffect(() => {
         const fetchUserConfig = async () => {
@@ -18,6 +20,22 @@ function Settings() {
 
         fetchUserConfig();
     }, []);
+
+    const handleSave = async () => {
+        if (!isSaving) {
+            setIsSaving(true);
+            const res = await window.pomodoro.updateUserConfig(userConfig);
+            if (res) {
+                setBackupConfig(userConfig);
+            } else {
+                setUserConfig(backupConfig);
+            }
+            setTimeout(() => {
+                setIsSaving(false);
+                closeSettings();
+            }, 1000);
+        }
+    };
 
     return (
         <div
@@ -47,12 +65,20 @@ function Settings() {
                 <div className='flex gap-4 justify-between text-white text-lg'>
                     <button
                         className='w-1/2 flex-shrink flex justify-center py-1 bg-purple-800 rounded-full hover:bg-purple-600'
-                        onClick={closeSettings}
+                        onClick={() => {
+                            if (!isSaving) {
+                                setUserConfig(backupConfig);
+                                closeSettings();
+                            }
+                        }}
                     >
                         <IoIosArrowBack />
                     </button>
-                    <button className='w-1/2 flex-shrink flex justify-center py-1 bg-purple-800 rounded-full hover:bg-purple-600'>
-                        <FiSave />
+                    <button
+                        className='w-1/2 flex-shrink flex justify-center py-1 bg-purple-800 rounded-full hover:bg-purple-600'
+                        onClick={handleSave}
+                    >
+                        {isSaving ? <CgSpinner className='animate-spin' /> : <FiSave />}
                     </button>
                 </div>
             </div>
